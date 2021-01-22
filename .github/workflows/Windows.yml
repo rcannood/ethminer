@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       # explicit include-based build matrix, of known valid options
       matrix:
         include:
@@ -57,6 +57,7 @@ jobs:
         visual_studio: ${{ matrix.visual_studio }}
       shell: powershell
       run: |
+        Start-Process ${env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\Community\Common7\Tools\VsMSBuildCmd.bat
         # Install CUDA via a powershell script
         .\scripts\actions\install_cuda_windows.ps1
         if ($?) {
@@ -66,7 +67,7 @@ jobs:
           echo "$env:CUDA_PATH_VX_Y=$env:CUDA_PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           echo "$env:CUDA_PATH/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         }
-
+        
     - name: nvcc check
       shell: powershell
       run: |
