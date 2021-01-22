@@ -22,9 +22,9 @@ jobs:
           - os: windows-2019
             cuda: "10.2.89"
             visual_studio: "Visual Studio 16 2019"
-          - os: windows-2019
+          - os: windows-2016
             cuda: "10.0.130"
-            visual_studio: "Visual Studio 16 2019"
+            visual_studio: "Visual Studio 15 2017"
           # - os: windows-2019
           #   cuda: "10.1.243"
           #   visual_studio: "Visual Studio 16 2019"
@@ -80,7 +80,7 @@ jobs:
     - name: Configure CMake
       id: configure
       shell: bash
-      run: cmake -G "${{ matrix.visual_studio }}" -B ${{ env.build_dir }} -H . -DETHASHCUDA=ON -DAPICORE=ON
+      run: cmake -G "${{ matrix.visual_studio }}" -B ${{ env.build_dir }} -H. -DETHASHCUDA=ON -DAPICORE=ON
 
     - name: Configure Error Processing
       if: ${{ (failure() && steps.configure.outcome == 'failure') || success() }}
