@@ -18,13 +18,13 @@ jobs:
           # Windows2019 & VS 2019 supports 10.1+
           - os: windows-2019
             cuda: "11.0.167"
-            visual_studio: "Visual Studio 16 2019"
+            visual_studio: "Visual Studio 16 2019 Win64"
           - os: windows-2019
             cuda: "10.2.89"
-            visual_studio: "Visual Studio 16 2019"
+            visual_studio: "Visual Studio 16 2019 Win64"
           - os: windows-2016
             cuda: "10.0.130"
-            visual_studio: "Visual Studio 15 2017"
+            visual_studio: "Visual Studio 15 2017 Win64"
           # - os: windows-2019
           #   cuda: "10.1.243"
           #   visual_studio: "Visual Studio 16 2019"
@@ -57,7 +57,6 @@ jobs:
         visual_studio: ${{ matrix.visual_studio }}
       shell: powershell
       run: |
-        Start-Process ${env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\Community\Common7\Tools\VsMSBuildCmd.bat
         # Install CUDA via a powershell script
         .\scripts\actions\install_cuda_windows.ps1
         if ($?) {
