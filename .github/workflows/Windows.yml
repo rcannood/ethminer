@@ -1,7 +1,6 @@
 # Windows builds.
 name: Windows
 
-
 on:
   push:
     branches:
@@ -11,17 +10,17 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       # explicit include-based build matrix, of known valid options
       matrix:
         include:
           # Windows2019 & VS 2019 supports 10.1+
           - os: windows-2019
             cuda: "11.0.167"
-            visual_studio: "Visual Studio 16 2019 Win64"
+            visual_studio: "Visual Studio 16 2019"
           - os: windows-2019
             cuda: "10.2.89"
-            visual_studio: "Visual Studio 16 2019 Win64"
+            visual_studio: "Visual Studio 16 2019"
           - os: windows-2016
             cuda: "10.0.130"
             visual_studio: "Visual Studio 15 2017 Win64"
