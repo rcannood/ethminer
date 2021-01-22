@@ -80,7 +80,7 @@ jobs:
     - name: Configure CMake
       id: configure
       shell: bash
-      run: cmake . -B ${{ env.build_dir }} -G "${{ matrix.visual_studio }}" -A x64 -H . -DETHASHCUDA=ON -DAPICORE=ON -DHUNTER_JOBS_NUMBER=%NUMBER_OF_PROCESSORS%
+      run: cmake -G "${{ matrix.visual_studio }}" -B ${{ env.build_dir }} -H . -DETHASHCUDA=ON -DAPICORE=ON
 
     - name: Configure Error Processing
       if: ${{ (failure() && steps.configure.outcome == 'failure') || success() }}
